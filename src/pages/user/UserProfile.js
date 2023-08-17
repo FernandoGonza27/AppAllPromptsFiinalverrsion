@@ -9,9 +9,9 @@ const UserProfile = () => {
     //const [list, setList] = useState([]);
     //const { data, loading, error } = useFetch("http://localhost:3300/api/users");
   
-    useEffect(() => {
-      setList(data);
-    }, [data]);    
+    //useEffect(() => {
+    //  setList(data);
+    //}, [data]);    
     const initialUserData = {
         name: user.username,
         email: user.email,
