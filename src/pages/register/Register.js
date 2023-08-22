@@ -42,7 +42,7 @@ const Register = () => {
     <div className="login">
       {susseces ? (
         <>
-          <Spinner message={"Please....wait to be verified"}></Spinner>
+          <Spinner message={"Please....wait to be verified, check your email"}></Spinner>
 
         </>
       ) : (

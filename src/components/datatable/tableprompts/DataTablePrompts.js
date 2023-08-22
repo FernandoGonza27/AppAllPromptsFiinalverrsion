@@ -5,11 +5,15 @@ import { Link } from 'react-router-dom';
 import axios from "../../../axiosConfig";
 import "./promptstable.css";
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../../context/AuthContext';
+import SearchPrompts from '../../prompts/searchPrompts/SearchPrompts';
 
 const DataTablePrompts = () => {
+  const { user } = useContext(AuthContext);    
   const [list, setList] = useState([]);
-  const { data, loading, error } = useFetch("http://localhost:3300/api/prompts");
-
+  const { data, loading, error } = useFetch(`http://localhost:3300/api/prompts/?iduser=${user._id}`);
+  console.log(user._id);
   useEffect(() => {
     setList(data);
   }, [data]);
@@ -22,16 +26,7 @@ const DataTablePrompts = () => {
     } catch (err) { }
   };
   
-  const handelInput = (e) => {
-    e.persist();
-    // Filtrar los datos según el término de búsqueda
-    const searchTerm = e.target.value.toLowerCase();
-    const filteredList = data.filter(item => (
-      item.name.toLowerCase().includes(searchTerm) ||
-      item.type.toLowerCase().includes(searchTerm)
-    ));
-    setList(filteredList);
-  }
+  
 
 
 
@@ -42,7 +37,7 @@ const DataTablePrompts = () => {
           <h2>Lista de Prompts</h2>
           <Link to="/create"><button className="btn btn-primary">Add propts</button></Link>
           <div className="mt-3">
-            <input type="text" className="form-control" placeholder="Search.." name="search" onChange={handelInput} />
+            <SearchPrompts setList={setList}/>
           </div>
           <table className='table'>
             <thead>

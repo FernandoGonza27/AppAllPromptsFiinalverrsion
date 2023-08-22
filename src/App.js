@@ -13,6 +13,7 @@ import ExecutePrompts from "./components/prompts/execute/ExecutePrompts";
 import UpdatePrompts from "./components/prompts/update/UpdatePrompts";
 import CreatePrompts from "./components/prompts/create/CreatePrompts";
 import UserProfile from "./pages/user/UserProfile";
+import VerifyUser from "./pages/verify/Verify";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -43,7 +44,11 @@ const router = createBrowserRouter([
     element: <Register></Register>,
     errorElement: <Error/>   
   },
-  
+  {
+    path: "/verify/:id",
+    element: <VerifyUser/>,
+    errorElement: <Error/>   
+  },
   {
     path: "/users",
     element: <Admin></Admin>,
